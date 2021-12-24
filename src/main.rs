@@ -111,7 +111,8 @@ fn main() -> io::Result<()> {
             // Run out/<debug level>/<program name>
             Command::new(format!("{}", out_path.as_path().display())).spawn()?.wait()?;
         },
-        _ => unimplemented!(),
+        Opt::Help { exit_code, help_cat, .. } => help_indexes::print_help_for(help_cat, exit_code),
+        Opt::Version => help_indexes::print_version(),
     }
     Ok(())
 }

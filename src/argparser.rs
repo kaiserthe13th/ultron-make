@@ -20,7 +20,8 @@ pub enum Opt {
         exit_code: i32,
         help_err: HelpError,
         help_cat: String,
-    }
+    },
+    Version,
 }
 
 pub fn parse_args() -> Opt {
@@ -82,6 +83,7 @@ pub fn parse_args() -> Opt {
                 optimize
             }
         },
+        "version" | "--version" | "-V" => Opt::Version,
         subc => Opt::Help {
             exit_code: 1,
             help_err: HelpError::UnknownSubcommand(subc.to_string()),
